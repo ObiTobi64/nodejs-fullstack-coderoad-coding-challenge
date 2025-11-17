@@ -1,0 +1,16 @@
+name: Hola Mundo Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  hola-mundo:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Imprimir Hola Mundo 2024
+      run: echo "Hola Mundo 2024"
