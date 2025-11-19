@@ -1,4 +1,4 @@
-name: Hola Mundo Pipeline
+name: CI/CD Pipeline - Deploy Frontend y Backend
 
 on:
   push:
@@ -8,12 +8,37 @@ on:
   workflow_dispatch:
 
 jobs:
-  hola-mundo:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout código
       uses: actions/checkout@v4
+    
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+        cache-dependency-path: |
+          client/package-lock.json
+          server/package-lock.json
+    
+    - name: Instalar dependencias del cliente
+      working-directory: ./client
+      run: npm ci
+    
+    - name: Build del cliente (Frontend)
+      working-directory: ./client
+      run: npm run build
+    
+    - name: Instalar dependencias del servidor
+      working-directory: ./server
+      run: npm ci
+    
+    - name: Build del servidor (Backend)
+      working-directory: ./server
+      run: npm run build
     
     - name: Configurar Python
       uses: actions/setup-python@v4
