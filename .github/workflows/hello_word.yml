@@ -30,7 +30,7 @@ jobs:
     
     - name: Build del cliente (Frontend)
       working-directory: ./client
-      run: npm run dev
+      run: npm run build
     
     - name: Instalar dependencias del servidor
       working-directory: ./server
@@ -38,7 +38,7 @@ jobs:
     
     - name: Build del servidor (Backend)
       working-directory: ./server
-      run: npm run dev
+      run: npm run build
     
     - name: Configurar Python
       uses: actions/setup-python@v4

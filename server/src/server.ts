@@ -37,8 +37,13 @@ async function writeDB(data: Database): Promise<void> {
 
 // list items
 app.get('/api/items', async (req: Request, res: Response): Promise<void> => {
-  res.json({coderoad: 'rocks🚀'})
-  // PUT YOUR CODE HERE
+  try {
+    const db : Database = await readDB();
+    const {items} = db;
+    res.status(200).json({data: items});
+  } catch (error) {
+    res.status(500).json({statusCode:500, message: 'Internal Server Error'});
+  }
 });
 
 // get item
