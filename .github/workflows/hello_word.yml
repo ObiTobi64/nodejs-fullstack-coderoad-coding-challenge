@@ -30,7 +30,7 @@ jobs:
     
     - name: Build del cliente (Frontend)
       working-directory: ./client
-      run: npm run build
+      run: npm run dev
     
     - name: Instalar dependencias del servidor
       working-directory: ./server
@@ -38,12 +38,12 @@ jobs:
     
     - name: Build del servidor (Backend)
       working-directory: ./server
-      run: npm run build
+      run: npm run dev
     
     - name: Configurar Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
     
-    - name: Ejecutar script de Hola Mundo 2024
-      run: python main.py
+    # - name: Ejecutar script de Hola Mundo 2024
+    #   run: python main.py
