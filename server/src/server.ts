@@ -1,6 +1,8 @@
 import express, { Request, Response, NextFunction, Application } from 'express';
 import fs from 'fs/promises';
 import path from 'path';
+import cors from 'cors';
+
 
 interface Item {
   id: number;
@@ -17,6 +19,7 @@ const app: Application = express();
 const PORT: number = parseInt(process.env.PORT || '4000', 10);
 const DB_PATH: string = path.join(__dirname, '..', 'db.json');
 
+app.use(cors());
 app.use(express.json());
 
 // helper: read DB
